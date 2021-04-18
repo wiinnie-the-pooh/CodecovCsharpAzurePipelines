@@ -5,7 +5,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  codecovVersion: '1.13.0'
+  codecovVersion: '1.10.0'
   testProject: 'CodecovCsharpAzurePipelines.Tests'
 
 steps:
