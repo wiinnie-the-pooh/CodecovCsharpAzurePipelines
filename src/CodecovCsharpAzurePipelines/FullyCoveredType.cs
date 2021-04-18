@@ -1,4 +1,6 @@
-﻿namespace CodecovCsharpAzurePipelines
+﻿using System;
+
+namespace CodecovCsharpAzurePipelines
 {
     public class FullyCoveredType : ICoveredType
     {
@@ -13,7 +15,7 @@
                 case Options.Maybe:
                     return "Covered Maybe";
                 default:
-                    return "Covered Unknown";
+                    throw new NotImplementedException();
             }
         }
     }

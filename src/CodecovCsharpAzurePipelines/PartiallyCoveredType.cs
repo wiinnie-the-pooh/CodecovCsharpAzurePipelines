@@ -1,4 +1,6 @@
-﻿namespace CodecovCsharpAzurePipelines
+﻿using System;
+
+namespace CodecovCsharpAzurePipelines
 {
     public class PartiallyCoveredType : ICoveredType
     {
@@ -13,7 +15,7 @@
                 case Options.Maybe:
                     return "Partially Maybe";
                 default:
-                    return "Partially Unknown";
+                    throw new NotImplementedException();
             }
         }
     }
