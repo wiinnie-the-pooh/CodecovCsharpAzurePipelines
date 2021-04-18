@@ -22,7 +22,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    arguments: 'dotnet test "./test/$(testProject)/$(testProject).csproj" -c Debug /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
+    arguments: './test/$(testProject)/$(testProject).csproj -c Debug /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
     publishTestResults: false
   displayName: '.NET Test'
 
