@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 
 namespace CodecovCsharpAzurePipelines.Tests
@@ -18,6 +19,16 @@ namespace CodecovCsharpAzurePipelines.Tests
             // Assert
             var isNullOrWhiteSpace = string.IsNullOrWhiteSpace(result);
             Assert.False(isNullOrWhiteSpace);
+        }
+
+        [Fact]
+        public void GetResult_UnknownOption_Throws()
+        {
+            // Arrange
+            var type = new PartiallyCoveredType();
+
+            // Act & Assert
+            Assert.Throws<NotImplementedException>(() => type.GetResult(Options.Unknown));
         }
     }
 }
