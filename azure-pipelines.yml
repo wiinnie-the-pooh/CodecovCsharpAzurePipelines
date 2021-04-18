@@ -27,5 +27,5 @@ steps:
   displayName: '.NET Test'
 
 - script: |
-    %USERPROFILE%\.nuget\packages\codecov\$(codecovVersion)\tools\codecov.exe -f "./test/$(testProject)/coverage.opencover.xml"
+    %USERPROFILE%\.nuget\packages\codecov\$(codecovVersion)\tools\codecov.exe -f "./test/$(testProject)/coverage.opencover.xml" -t $(CODECOV_TOKEN)
   displayName: 'Codecov'
