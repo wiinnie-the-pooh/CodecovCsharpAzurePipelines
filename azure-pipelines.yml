@@ -12,16 +12,19 @@ steps:
 - task: NuGetToolInstaller@1
   inputs:
     versionSpec: '>=5.8'
+  displayName: 'NuGet Install'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
+  displayName: '.NET Restore'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     arguments: 'dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
-    publishTestResults: false
+  displayName: '.NET Test'
 
 - script: |
     %USERPROFILE%\.nuget\packages\codecov\$(codecovVersion)\tools\codecov.exe -f "./test/$(testProject)/coverage.opencover.xml" -t $(CODECOV_TOKEN)
+  displayName: 'Codecov'
