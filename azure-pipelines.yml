@@ -4,6 +4,10 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
+variables:
+  codecovVersion: '1.13.0'
+  testProject: 'CodecovCsharpAzurePipelines.Tests'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
@@ -13,3 +17,6 @@ pool:
     command: 'test'
     arguments: 'dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
     publishTestResults: false
+
+- script: |
+    %USERPROFILE%\.nuget\packages\codecov\$(codecovVersion)\tools\codecov.exe -f "./test/$(testProject)/coverage.opencover.xml" -t $(CODECOV_TOKEN)
