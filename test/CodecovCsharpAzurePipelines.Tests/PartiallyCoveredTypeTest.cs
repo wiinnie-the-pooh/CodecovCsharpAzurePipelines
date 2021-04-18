@@ -4,6 +4,7 @@ namespace CodecovCsharpAzurePipelines.Tests
 {
     public class PartiallyCoveredTypeTest
     {
+        [InlineData(Options.Yes)]
         [InlineData(Options.Maybe)]
         [Theory]
         public void GetResult_ValidOptions_ReturnsNonEmptyResult(Options options)
