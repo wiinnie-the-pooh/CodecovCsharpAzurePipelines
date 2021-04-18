@@ -22,7 +22,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    arguments: 'dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
+    arguments: 'dotnet test -c Debug --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
   displayName: '.NET Test'
 
 - script: |
