@@ -8,6 +8,7 @@ variables:
   codecovVersion: '1.13.0'
   testProject: 'CodecovCsharpAzurePipelines.Tests'
 
+steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
