@@ -5,7 +5,7 @@ pool:
   vmImage: "ubuntu-latest"
 
 variables:
-  Include: '\\"[NRK]*,[CodecovCsharpAzurePipelines]*\\"'
+  Include: '\"[NRK]*,[CodecovCsharpAzurePipelines]*\"'
   testProject: "CodecovCsharpAzurePipelines.Tests"
 
 steps:
