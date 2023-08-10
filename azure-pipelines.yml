@@ -2,7 +2,7 @@ trigger:
   - main
 
 pool:
-  vmImage: "windows-latest"
+  vmImage: "ubuntu-latest"
 
 variables:
   codecovVersion: "1.12.4"
@@ -31,7 +31,3 @@ steps:
       arguments: "./test/$(testProject)/$(testProject).csproj -c Debug --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover"
       publishTestResults: false
     displayName: ".NET Test"
-
-  - script: |
-      %USERPROFILE%\.nuget\packages\codecov\$(codecovVersion)\tools\codecov.exe -f "./test/$(testProject)/coverage.opencover.xml" -t $(CODECOV_TOKEN)
-    displayName: "Codecov"
