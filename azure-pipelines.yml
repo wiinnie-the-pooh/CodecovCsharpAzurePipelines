@@ -1,31 +1,37 @@
 trigger:
-- main
+  - main
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: "windows-latest"
 
 variables:
-  codecovVersion: '1.12.4'
-  testProject: 'CodecovCsharpAzurePipelines.Tests'
+  codecovVersion: "1.12.4"
+  testProject: "CodecovCsharpAzurePipelines.Tests"
 
 steps:
-- task: NuGetToolInstaller@1
-  inputs:
-    versionSpec: '>=5.8'
-  displayName: 'NuGet Install'
+  - task: NuGetToolInstaller@1
+    inputs:
+      versionSpec: ">=5.8"
+    displayName: "NuGet Install"
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-  displayName: '.NET Restore'
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: "restore"
+    displayName: ".NET Restore"
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-    arguments: './test/$(testProject)/$(testProject).csproj -c Debug --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
-    publishTestResults: false
-  displayName: '.NET Test'
+  - task: UseDotNet@2
+    displayName: "use sdk '7.0.x'"
+    inputs:
+      version: 7.0.x
+      packageType: sdk
 
-- script: |
-    %USERPROFILE%\.nuget\packages\codecov\$(codecovVersion)\tools\codecov.exe -f "./test/$(testProject)/coverage.opencover.xml" -t $(CODECOV_TOKEN)
-  displayName: 'Codecov'
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: "test"
+      arguments: "./test/$(testProject)/$(testProject).csproj -c Debug --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover"
+      publishTestResults: false
+    displayName: ".NET Test"
+
+  - script: |
+      %USERPROFILE%\.nuget\packages\codecov\$(codecovVersion)\tools\codecov.exe -f "./test/$(testProject)/coverage.opencover.xml" -t $(CODECOV_TOKEN)
+    displayName: "Codecov"
