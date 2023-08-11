@@ -28,6 +28,6 @@ steps:
   - task: DotNetCoreCLI@2
     inputs:
       command: "test"
-      arguments: ./test/$(testProject)/$(testProject).csproj -c Debug --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Include=${{ format('\"[NRK]*,[CodecovCsharpAzurePipelines]*\"') }}
+      arguments: ./test/$(testProject)/$(testProject).csproj -c Debug --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Include=\\"\""[NRK]*,[CodecovCsharpAzurePipelines]*\\"\""
       publishTestResults: false
     displayName: ".NET Test"
